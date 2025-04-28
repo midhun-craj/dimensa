@@ -1,11 +1,5 @@
 
-# 🚀 The AI Developer Challenge
-
-### Make Something Insanely Great
-Welcome. This isn’t just a coding task. This is a mission. A calling for the bold and curious—those who dare to think
-differently. If you're ready to build something magical, something powerful, something *insanely great*—read on.
-
----
+# 🚀 DIMENSA
 
 ## 🌟 The Vision
 
