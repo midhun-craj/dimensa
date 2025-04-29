@@ -6,10 +6,6 @@ COPY pyproject.toml ./
 # Install dependencies using Poetry
 RUN python3 -m pip install --upgrade pip && \
     python3 -m pip install --upgrade poetry
-    
-RUN python3 -m pip install torch==1.13.1 transformers==4.46.3
-
-RUN python3 -m pip install huggingface_hub[hf_xet]
 
 RUN python3 -m poetry install --only main && \
     rm -rf ~/.cache/pypoetry/{cache,artifacts}

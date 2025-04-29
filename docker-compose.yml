@@ -1,0 +1,36 @@
+services:
+  flask-app:
+    container_name: flask-app
+    build: 
+      context: ./flask-app
+      dockerfile: Dockerfile
+    networks:
+      - backend
+
+  fastapi-app:
+    container_name: fastapi-app
+    build: 
+      context: ./fastapi-app
+      dockerfile: Dockerfile
+    networks:
+      - backend
+    env_file:
+      - ./fastapi-app/.env
+    depends_on:
+      - flask-app
+
+  streamlit-app:
+    container_name: streamlit-app
+    build: 
+      context: ./streamlit-app
+      dockerfile: Dockerfile
+    ports:
+      - "8501:8501"
+    networks:
+      - backend
+    depends_on:
+      - fastapi-app
+
+networks:
+  backend: 
+    driver: bridge

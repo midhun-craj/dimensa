@@ -1,6 +1,4 @@
-import json
 import logging
-import pprint
 from typing import Any, Dict, List, Literal, Tuple
 
 import requests

@@ -11,6 +11,7 @@ from openfabric_pysdk.utility import SchemaUtil
 @dataclass
 class OutputClass:
     message: str = None
+    generated_model: str = None
 
 
 ################################################################
@@ -18,6 +19,7 @@ class OutputClass:
 ################################################################
 class OutputClassSchema(Schema):
     message = fields.Str(allow_none=True)
+    generated_model = fields.Str(allow_none=True)
 
     @post_load
     def create(self, data, **kwargs):
