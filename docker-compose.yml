@@ -1,11 +1,25 @@
 services:
+
+  chromadb:
+    image: chromadb/chroma:1.0.7
+    container_name: chromadb
+    command: run --host 0.0.0.0 --port 8083
+    environment:
+      - IS_PERSISTENT=TRUE
+    networks:
+      - dimensa
+    restart: always
+    volumes:
+      - ./chroma-data:/chroma
+
   flask-app:
     container_name: flask-app
     build: 
       context: ./flask-app
       dockerfile: Dockerfile
     networks:
-      - backend
+      - dimensa
+    restart: always
 
   fastapi-app:
     container_name: fastapi-app
@@ -13,11 +27,19 @@ services:
       context: ./fastapi-app
       dockerfile: Dockerfile
     networks:
-      - backend
+      - dimensa
+    restart: always
     env_file:
       - ./fastapi-app/.env
     depends_on:
       - flask-app
+      - chromadb
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://0.0.0.0:8082/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
 
   streamlit-app:
     container_name: streamlit-app
@@ -25,12 +47,16 @@ services:
       context: ./streamlit-app
       dockerfile: Dockerfile
     ports:
-      - "8501:8501"
+      - "8081:8081"
     networks:
-      - backend
+      - dimensa
+    restart: always
     depends_on:
       - fastapi-app
 
 networks:
-  backend: 
+  dimensa: 
     driver: bridge
+
+volumes:
+  chroma:

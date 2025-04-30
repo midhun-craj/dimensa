@@ -1,60 +1,7 @@
 
-# 🚀 DIMENSA
+# 🚀 DIMENSA | AI-POWERED 3D IMAGINATION
 
-## 🌟 The Vision
-
-Imagine this:  
-A user types a simple idea —
-> “Make me a glowing dragon standing on a cliff at sunset.”
-
-And your app...
-
-- Understands the request using a local LLM.
-- Generates stunning visuals from text.
-- Transforms that image into an interactive 3D model.
-- Remembers it. Forever.
-
-You're not building an app. You're building **a creative partner**.
-
----
-
-## 🎯 The Mission
-
-Create an intelligent, end-to-end pipeline powered by Openfabric and a locally hosted LLM:
-
-### Step 1: Understand the User
-
-Use a local LLM like **DeepSeek** or **Llama** to:
-
-- Interpret prompts
-- Expand them creatively
-- Drive meaningful, artistic input into the generation process
-
-### Step 2: Bring Ideas to Life
-
-Chain two Openfabric apps together:
-
-- **Text to Image**  
-  App ID: `f0997a01-d6d3-a5fe-53d8-561300318557`  
-  [View on Openfabric](https://openfabric.network/app/view/f0997a01-d6d3-a5fe-53d8-561300318557)
-
-- **Image to 3D**  
-  App ID: `69543f29-4d41-4afc-7f29-3d51591f11eb`  
-  [View on Openfabric](https://openfabric.network/app/view/69543f29-4d41-4afc-7f29-3d51591f11eb)
-
-Use their **manifest** and **schema** dynamically to structure requests.
-
-### Step 3: Remember Everything
-
-Build memory like it matters.
-
-- 🧠 **Short-Term**: Session context during a single interaction
-- 💾 **Long-Term**: Persistence across sessions using SQLite, Redis, or flat files  
-  Let the AI recall things like:
-
-> “Generate a new robot like the one I created last Thursday — but this time, with wings.”
-
----
+Created an intelligent, end-to-end pipeline for 3D model generation powered by Openfabric and AI21 api for expanding the prompt creatively.
 
 ## 🛠 The Pipeline
 
@@ -74,120 +21,110 @@ Simple. Elegant. Powerful.
 
 ---
 
-## 📦 Deliverables
-
-What we expect:
-
-- ✅ Fully working Python project
-- ✅ `README.md` with clear instructions
-- ✅ Prompt → Image → 3D working example
-- ✅ Logs or screenshots
-- ✅ Memory functionality (clearly explained)
-
----
-
-## 🧠 What We’re Really Testing
-
-- Your grasp of the **Openfabric SDK** (`Stub`, `Remote`, `schema`, `manifest`)
-- Your **creativity** in prompt-to-image generation
-- Your **engineering intuition** with LLMs
-- Your ability to manage **context and memory**
-- Your **attention to quality** — code, comments, and clarity
-
----
-
-## 🚀 Bonus Points
-
-- 🎨 Visual GUI with Streamlit or Gradio
-- 🔍 FAISS/ChromaDB for memory similarity
-- 🗂 Local browser to explore generated 3D assets
-- 🎤 Voice-to-text interaction
-
----
-
-## ✨ Example Experience
-
 Prompt:
 > “Design a cyberpunk city skyline at night.”
+```bash
 
 → LLM expands into vivid, textured visual descriptions  
 → Text-to-Image App renders a cityscape  
 → Image-to-3D app converts it into depth-aware 3D  
 → The system remembers the request for remixing later
-
-That’s not automation. That’s imagination at scale.
-
----
-
-## 💡 Where to start
-You’ll find the project structure set, the entrypoint is in `main.py` file.
-```python
-############################################################
-# Execution callback function
-############################################################
-def execute(model: AppModel) -> None:
-    """
-    Main execution entry point for handling a model pass.
-
-    Args:
-        model (AppModel): The model object containing request and response structures.
-    """
-
-    # Retrieve input
-    request: InputClass = model.request
-
-    # Retrieve user config
-    user_config: ConfigClass = configurations.get('super-user', None)
-    logging.info(f"{configurations}")
-
-    # Initialize the Stub with app IDs
-    app_ids = user_config.app_ids if user_config else []
-    stub = Stub(app_ids)
-
-    # ------------------------------
-    # TODO : add your magic here
-    # ------------------------------
-                                
-                                
-                                
-    # Prepare response
-    response: OutputClass = model.response
-    response.message = f"Echo: {request.prompt}"
 ```
 
-Given schema, stub implementation and all the details you should be able to figure out how eventing works but as an
-extra hint (if needed) here is an example of calling and app get the value and save it as an image:
-```python
-    # Call the Text to Image app
-    object = stub.call('c25dcd829d134ea98f5ae4dd311d13bc.node3.openfabric.network', {'prompt': 'Hello World!'}, 'super-user')
-    image = object.get('result')
-    # save to file
-    with open('output.png', 'wb') as f:
-        f.write(image)
+## 🚀 Points
+
+- 🎨 Visual GUI with Streamlit
+- 🔍 ChromaDB for memory similarity
+
+## Folder Structure
+```bash
+dimensa/
+├── fastapi-app/
+│   ├── main
+│   ├── memory/              
+│   │   ├── long_term_memory.py              
+│   │   └── short_term_memory.py
+│   ├── .env
+│   ├── Dockerfile
+│   └── requirements.txt
+│
+├── flask-app/
+│   ├── config/
+│   ├── core/
+│   │   ├── __init__.py
+│   │   ├── remote.py
+│   │   └── stub.py
+│   ├── datastore/
+│   ├── ontology_dc8f06af066e4a7880a5938933236037/
+│   │   ├── __init__.py
+│   │   ├── config.py
+│   │   ├── input.py 
+│   │   └── output.py
+│   ├── main.py
+│   ├── ignite.py
+│   ├── start.sh
+│   ├── poetry.lock
+│   ├── Dockerfile
+│   └── pyproject.toml      
+│
+├── streamlit-app/
+│   ├── streamlit_app.py                    
+│   ├── Dockerfile         
+│   └── requirements.txt       
+│
+├── .gitignore               
+├── docker-compose.yml             
+└── README.md                      
 ```
 
-## How to start
-The application can be executed in two different ways:
-* locally by running the `start.sh` 
-* on in a docker container using `Dockerfile`
+# Steps To Run
+Clone the repository:
+```bash
+git clone https://github.com/midhun-craj/dimensa.git
+```
+Navigate to the project folder:
+```bash
+cd dimensa
+```
 
-If all is fine you should be able to access the application on `http://localhost:8888/swagger-ui/#/App/post_execution` and see the following screen:
+##🔗 API Integration
+1. Go to the site below sign up and generate a free api key
+```bash
+https://docs.ai21.com/
+``` 
 
-![Swagger UI](./swagger-ui.png)
+2. Map to the fastapi app and create a .env file inside the fastapi-app folder and paste the ai21 api key.
+```bash
+cd fastapi-app
+touch .env
+```
+Inside the .env file paste the api key 
+```bash
+AI21_API_KEY=your_api_key
+```
 
-## Ground Rules
-Step up with any arsenal (read: libraries or packages) you believe in, but remember:
-* 👎 External services like chatGPT are off-limits. Stand on your own.
-* 👎 Plagiarism is for the weak. Forge your own path.
-* 👎 A broken app equals failure. Non-negotiable.
+### Commands to run the project using docker compose
+```bash 
+COMPOSE_BAKE=TRUE docker compose up -d --build
+```
+To stop the docker compose
+```bash
+docker compose down
+```
+To verify the containers are running:
+run this command and see the running containers
+```bash
+docker ps
+```
 
-## This Is It
-We're not just evaluating a project; we're judging your potential to revolutionize our 
-landscape. A half-baked app won’t cut it.
+### Commands to run the project using docker 
+Run each service app using this command
+```bash 
+docker build -t image_name .
+docker run -d -p port:port --name container_name image_name
+```
 
-We're zeroing in on:
-* 👍 Exceptional documentation.
-* 👍 Code that speaks volumes.
-* 👍 Inventiveness that dazzles.
-* 👍 A problem-solving beast.
-* 👍 Unwavering adherence to the brief
+After running the project the entry point can be viewed at \|/
+```bash 
+http://localhost:8081
+```
