@@ -7,15 +7,15 @@ Create stunning 3D models from simple prompts using a powerful pipeline driven b
 ## 🛠 The Pipeline
 
 📝 Your Prompt  
-↓
+↓  
 🧠 LLM (AI21)  
-↓
+↓  
 🖼️ Text-to-Image App (Openfabric)  
-↓
+↓  
 🧾 Image Output  
-↓
+↓  
 🧊 Image-to-3D App (Openfabric)  
-↓
+↓  
 🎉 3D Model Output  
 
 Simple. Elegant. Powerful.  
