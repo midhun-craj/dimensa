@@ -1,27 +1,26 @@
 
-# 🚀 DIMENSA | AI-POWERED 3D IMAGINATION
+# 🌐 DIMENSA | AI-POWERED 3D IMAGINATION 🚀
 
-Created an intelligent, end-to-end pipeline for 3D model generation powered by Openfabric and AI21 api for expanding the prompt creatively.
+Imagine → Generate → Explore
+Create stunning 3D models from simple prompts using a powerful pipeline driven by Openfabric, AI21 API!
 
 ## 🛠 The Pipeline
 
-User Prompt
+📝 Your Prompt
 ↓
-Local LLM (DeepSeek or LLaMA)
+🧠 LLM (AI21)
 ↓
-Text-to-Image App (Openfabric)
+🖼️ Text-to-Image App (Openfabric)
 ↓
-Image Output
+🧾 Image Output
 ↓
-Image-to-3D App (Openfabric)
+🧊 Image-to-3D App (Openfabric)
 ↓
-3D Model Output
+🎉 3D Model Output
 
 Simple. Elegant. Powerful.
 
----
-
-Prompt:
+Example Prompt:
 > “Design a cyberpunk city skyline at night.”
 ```bash
 
@@ -31,12 +30,14 @@ Prompt:
 → The system remembers the request for remixing later
 ```
 
-## 🚀 Points
+## 🌟 Features
 
 - 🎨 Visual GUI with Streamlit
 - 🔍 ChromaDB for memory similarity
+- ⚡ End-to-end Dockerized microservices
+- 📦 Modular structure for extensibility
 
-## Folder Structure
+## 🗂️ Folder Structure
 ```bash
 dimensa/
 ├── fastapi-app/
@@ -77,54 +78,52 @@ dimensa/
 └── README.md                      
 ```
 
-# Steps To Run
-Clone the repository:
+## 🧭 Getting Started
+### Clone the repo
 ```bash
 git clone https://github.com/midhun-craj/dimensa.git
-```
-Navigate to the project folder:
-```bash
 cd dimensa
 ```
 
-##🔗 API Integration
-1. Go to the site below sign up and generate a free api key
+
+### 🔗 Set up API Key for AI21 Studio
+Go to the site below sign up and generate a free api key:
 ```bash
 https://docs.ai21.com/
 ``` 
-
-2. Map to the fastapi app and create a .env file inside the fastapi-app folder and paste the ai21 api key.
+Then:
 ```bash
 cd fastapi-app
 touch .env
 ```
-Inside the .env file paste the api key 
+Inside .env, paste:
 ```bash
 AI21_API_KEY=your_api_key
 ```
 
-### Commands to run the project using docker compose
+## 🐳 Run with Docker Compose (Recommended)
+### ✅ Start all services
 ```bash 
 COMPOSE_BAKE=TRUE docker compose up -d --build
 ```
-To stop the docker compose
+### 🛑 Stop everything
 ```bash
 docker compose down
 ```
-To verify the containers are running:
-run this command and see the running containers
+### 📊 Check if everything's running
 ```bash
 docker ps
 ```
 
-### Commands to run the project using docker 
-Run each service app using this command
+## 🛠️ Run Each Service Manually (Alternative) 
 ```bash 
 docker build -t image_name .
 docker run -d -p port:port --name container_name image_name
 ```
 
-After running the project the entry point can be viewed at \|/
+## 🖥 Access the App
+Launch your browser and visit:
 ```bash 
 http://localhost:8081
 ```
+🎨 Enter a prompt → Watch AI create 3D art from your imagination!
