@@ -6,19 +6,19 @@ Create stunning 3D models from simple prompts using a powerful pipeline driven b
 
 ## 🛠 The Pipeline
 
-📝 Your Prompt
+📝 Your Prompt  
 ↓
-🧠 LLM (AI21)
+🧠 LLM (AI21)  
 ↓
-🖼️ Text-to-Image App (Openfabric)
+🖼️ Text-to-Image App (Openfabric)  
 ↓
-🧾 Image Output
+🧾 Image Output  
 ↓
-🧊 Image-to-3D App (Openfabric)
+🧊 Image-to-3D App (Openfabric)  
 ↓
-🎉 3D Model Output
+🎉 3D Model Output  
 
-Simple. Elegant. Powerful.
+Simple. Elegant. Powerful.  
 
 Example Prompt:
 > “Design a cyberpunk city skyline at night.”
